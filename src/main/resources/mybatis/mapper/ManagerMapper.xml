@@ -9,6 +9,35 @@
 
   <select id="getManagerByUsername" resultType="com.example.demo.entity.Manager">
       select * from manager where manager_name = #{username}
+</select>
+
+    <select id="countByUsername" resultType="java.lang.Integer">
+        select count(*) from manager where manager_name = #{username}
+    </select>
+
+    <select id="getManagerByUserid" resultType="com.example.demo.entity.Manager">
+      select * from manager where manager_id = #{id}
   </select>
 
+  <select id="getAll" resultType="com.example.demo.entity.Manager">
+    select * from manager
+  </select>
+
+  <insert id="save" parameterType="com.example.demo.entity.Manager">
+    INSERT INTO manager (manager_id,manager_name,manager_pwd) VALUES   (#{managerName},
+                          #{managerName},
+                          #{managerPwd})
+  </insert>
+
+  <update id="update" parameterType="com.example.demo.entity.Manager">
+        UPDATE manager
+            SET
+                manager_name = #{managerName},
+                manager_pwd = #{managerPwd}
+         WHERE manager_id = #{managerId};
+  </update>
+
+    <delete id="delete" parameterType="java.lang.String">
+        DELETE FROM manager WHERE manager_id = #{id}
+    </delete>
 </mapper>

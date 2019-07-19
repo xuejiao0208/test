@@ -5,7 +5,41 @@
     <id column="article_id" property="articleId" jdbcType="VARCHAR" />
     <result column="article_title" property="articleTitle" jdbcType="VARCHAR" />
     <result column="article_date" property="articleDate" jdbcType="VARCHAR" />
+    <result column="article_content" property="articleContent" jdbcType="VARCHAR" />
     <result column="nav_id" property="navId" jdbcType="VARCHAR" />
   </resultMap>
+  <select id="getArticleByArticle" resultType="com.example.demo.entity.Article">
+    select * from article where article_id = #{article}
+  </select>
+
+  <select id="getAllA" resultType="com.example.demo.entity.Article">
+    select
+     article_id,article_title,article_date,article_content,nav_name as nav_id
+     from article a
+    left join nav v
+    on v.nav_id = a.nav_id
+  </select>
+
+  <insert id="saveA" parameterType="com.example.demo.entity.Article">
+    INSERT INTO article (article_id,article_title,article_date,article_content,nav_id) VALUES   (#{articleId},
+                                                                        #{articleTitle},
+                                                                        #{articleDate},
+                                                                        #{articleContent},
+                                                                        #{navId})
+  </insert>
+
+  <update id="updateA" parameterType="com.example.demo.entity.Article">
+    UPDATE article
+    SET
+      article_title = #{articleTitle},
+      article_date = #{articleDate},
+      article_content = #{articleContent},
+      nav_id = #{navId}
+    WHERE article_id = #{articleId};
+  </update>
+
+  <delete id="delete" parameterType="java.lang.String">
+        DELETE FROM article WHERE article_id = #{articleId}
+    </delete>
 
 </mapper>

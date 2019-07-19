@@ -7,4 +7,34 @@
     <result column="nav_feight" property="navFeight" jdbcType="INTEGER" />
   </resultMap>
 
+  <select id="getNavByNavid" resultType="com.example.demo.entity.Nav">
+      select * from nav where nav_id = #{navid}
+</select>
+
+  <select id="countByNavid" resultType="java.lang.Integer">
+        select count(*) from nav where nav_id = #{navid}
+    </select>
+
+
+  <select id="getAll" resultType="com.example.demo.entity.Nav">
+    select * from nav
+  </select>
+
+  <insert id="save" parameterType="com.example.demo.entity.Nav">
+    INSERT INTO nav (nav_id,nav_name,nav_feight) VALUES   (#{navId},
+                          #{navName},
+                          #{navFeight})
+  </insert>
+
+  <update id="update" parameterType="com.example.demo.entity.Nav">
+        UPDATE nav
+            SET
+                nav_name = #{navName},
+                nav_feight = #{navFeight}
+         WHERE nav_id = #{navId};
+  </update>
+
+  <delete id="delete" parameterType="java.lang.String">
+        DELETE FROM nav WHERE nav_id = #{id}
+    </delete>
 </mapper>
