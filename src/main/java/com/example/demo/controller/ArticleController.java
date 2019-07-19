@@ -59,8 +59,8 @@ public class ArticleController {
         model.addAttribute("article",employee);
 
         //页面要显示所有的部门列表
-        Collection<Nav> departments = navService.getAll();
-        model.addAttribute("navs",departments);
+//        Collection<Nav> departments = navService.getAll();
+//        model.addAttribute("navs",departments);
         //回到修改页面(add是一个修改添加二合一的页面);
         return "article/add";
     }
